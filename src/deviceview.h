@@ -26,6 +26,7 @@
 
 #include <string>
 #include <vector>
+#include <fstream>
 
 class Device;
 class Window;
@@ -58,6 +59,7 @@ class DeviceView
         Graph m_deviceGraphOut;
 
         Device* m_device;
+        std::ofstream statsFile;
 };
 
 #endif

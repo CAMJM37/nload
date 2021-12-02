@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     // handle interrrupt signal
     signal(SIGINT, signalHandler);
     signal(SIGTERM, signalHandler);
-    signal(SIGWINCH, signalHandler);
+//    signal(SIGWINCH, signalHandler);
 
     vector<string> arguments;
     for(int i = 1; i < argc; ++i)
