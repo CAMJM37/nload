@@ -104,7 +104,7 @@ void DeviceView::print(Window& window)
 
   generateStatisticsIn(statLinesIn);
   generateStatisticsOut(statLinesOut);
-  statsFile << statLinesOut[0] << " " << statLinesIn[0] << "\r" << std::endl;
+  //statsFile << statLinesOut[0] << " " << statLinesIn[0] << "\r" << std::endl;
 
 
     size_t statLineInMaxLength = max_element(statLinesIn.begin(), statLinesIn.end(), sizeLess())->size();
