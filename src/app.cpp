@@ -29,6 +29,7 @@
 #include "devreaderfactory.h"
 #include "output-file.h"
 #include "output-ncurses.h"
+#include "output-stats.h"
 #include "setting.h"
 #include "settingfilter.h"
 #include "settingstore.h"
@@ -110,6 +111,7 @@ int App::run(const vector<string>& arguments)
     bool deleteDevicesRequested = true;
     bool printHelpAndExit = false;
     string outputFile;
+    string statsFile;
     for(vector<string>::const_iterator itArg = arguments.begin(); itArg != arguments.end(); ++itArg)
     {
         vector<string>::const_iterator itNextArg = itArg + 1;
@@ -346,6 +348,18 @@ int App::run(const vector<string>& arguments)
         else if(*itArg == "-s")
         {
         }
+        else if(*itArg == "-j")
+        {
+            if(!haveNextArg)
+            {
+                cerr << "Missing argument for the -j parameter." << endl;
+                printHelpAndExit = true;
+                break;
+            }
+
+            statsFile = *itNextArg;
+            ++itArg;
+        }
         // assume unknown parameter to be the network device
         else
         {
@@ -384,6 +398,9 @@ int App::run(const vector<string>& arguments)
     // create output instances
     if(outputFile.empty() == false)
         m_outputs.push_back(new OutputFile(this, devices, outputFile));
+
+    if(statsFile.empty() == false)
+        m_outputs.push_back(new OutputStats(this, devices, statsFile));
 
     if(isatty(STDOUT_FILENO))
         m_outputs.push_back(new OutputNcurses(this, devices));
