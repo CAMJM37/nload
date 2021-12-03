@@ -17,6 +17,7 @@ nload_SOURCES = \
 	output.h										\
 	output-file.cpp output-file.h					\
 	output-ncurses.cpp output-ncurses.h				\
+	output-stats.cpp output-stats.h					\
 	screen.cpp screen.h								\
 	setting.cpp setting.h							\
 	settingfilter.cpp settingfilter.h               \
